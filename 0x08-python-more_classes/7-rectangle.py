@@ -7,6 +7,7 @@ Class rectangle
 class Rectangle:
 
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
 
@@ -58,7 +59,8 @@ class Rectangle:
 
         rectangle = []
         for i in range(self.__height):
-            [rectangle.append("#") for j in range(self.__width)]
+            [rectangle.append(str(self.print_symbol))
+             for j in range(self.__width)]
             if i != self.__height - 1:
                 rectangle.append("\n")
         return ("".join(rectangle))
@@ -73,4 +75,3 @@ class Rectangle:
 
         print("Bye rectangle...")
         type(self).number_of_instances -= 1
-
