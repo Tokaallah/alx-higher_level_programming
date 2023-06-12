@@ -1,10 +1,7 @@
 #!/usr/bin/python3
+"""checks for type of class against object"""
+
+
 def is_same_class(obj, a_class):
-    """
-    ARGS:
-        * obj: object to verify
-        * a_class: verify if this class is the class of obj
-    """
-    if type(obj) is a_class:
-        return (True)
-    return (False)
+    """returns"""
+    return type(obj) is a_class
