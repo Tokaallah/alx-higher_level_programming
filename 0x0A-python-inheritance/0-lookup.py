@@ -1,6 +1,7 @@
-#!/usr/bin/python3
+i#!/usr/bin/python3
+"""lookup"""
+
+
 def lookup(obj):
-    """
-    return the list of what is inside the obj
-    """
-    return dir(obj)
+    """returns list of dir()"""
+    return([x for x in dir(obj)])
