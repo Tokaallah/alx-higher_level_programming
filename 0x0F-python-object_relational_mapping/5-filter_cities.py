@@ -1,11 +1,27 @@
 #!/usr/bin/python3
-
+"""
+here we are going to connect to a database and realize a
+query
+"""
 import sys
 import MySQLdb
 
-if __name__ == '__main__':
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    cur = db.cursor()
-    cur.execute("SELECT * FROM cities JOIN states \
-                ON cities.state_id = states.id ORDER BY cities.id")
-    [print(", ".join([c[2] for c in cur.fetchall() if c[4] == sys.argv[4]]))]
+if __name__ == "__main__":
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         port=3306, passwd=sys.argv[2], db=sys.argv[3],
+                         charset="utf8")
+    query = db.cursor()
+    state = sys.argv[4]
+    query.execute("SELECT cities.id, cities.name, states.name FROM cities\
+                 LEFT JOIN states ON states.id = cities.state_id\
+                 WHERE states.name = %s\
+                 ORDER BY cities.id ASC", (sys.argv[4],))
+    output = query.fetchall()
+    aux = ""
+    result = ""
+    for i in output:
+            result = result + aux + i[1]
+            aux = ", "
+    print(result)
+    query.close()
+    db.close()
